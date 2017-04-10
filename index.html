@@ -10,26 +10,21 @@
 <p>生まれてから<span id="daysPast">???</span>日経過していて、だいたい<span id="age">???</span>歳です！</p>
 <script>
     function getAge() {
-        var birthday = document.getElementById('birthday').value;
-        //var d1 = new Date(birthday);
+        // 入力値の取得
+        var birthday = document.getElementById('birthday').value.split("-");
 
-        var birthdayArray = birthday.split("-");
-        var year = birthdayArray[0];
-        var month = birthdayArray[1] - 1;
-        var day = birthdayArray[2];
-        console.log(birthdayArray);
-
-        var d1 = new Date(year, month, day);
-
+        // 日付オブジェクトの作成
+        var d1 = new Date(birthday[0], birthday[1] - 1, birthday[2]);
         var d2 = new Date();
+
+        // 日数、年齢の計算
         var diff = d2.getTime() - d1.getTime();
         var daysPast = Math.floor(diff / (1000 * 60 * 60 * 24));
-        // alert(daysPast + '日経過');
         var age = Math.floor(daysPast / 365.25);
-        //alert('だいたい' + age + '歳!' );
+
+        // 結果の表示
         document.getElementById('daysPast').innerHTML = daysPast;
         document.getElementById('age').innerHTML = daysPast;
-
     }
 </script>
 </body>
